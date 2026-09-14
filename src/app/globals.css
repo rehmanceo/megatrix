@@ -1,0 +1,113 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f7f8fa;
+  --foreground: #0b1220;
+
+  --color-ink-950: #060a12;
+  --color-ink-900: #0b1220;
+  --color-ink-800: #131c2e;
+  --color-ink-700: #1d293f;
+  --color-ink-600: #2b3a56;
+  --color-ink-400: #5b6b8c;
+  --color-ink-300: #8b98b3;
+  --color-ink-200: #c3cbdb;
+  --color-ink-100: #e4e8f0;
+  --color-ink-50: #f4f6fa;
+
+  --color-ember-700: #9a3412;
+  --color-ember-600: #c2410c;
+  --color-ember-500: #ea580c;
+  --color-ember-400: #f97316;
+  --color-ember-100: #ffedd5;
+  --color-ember-50: #fff7ed;
+
+  --color-cool-600: #0f766e;
+  --color-cool-500: #0d9488;
+  --color-cool-400: #2dd4bf;
+  --color-cool-100: #ccfbf1;
+  --color-cool-50: #f0fdfa;
+
+  --font-display: var(--font-geist-sans);
+  --font-body: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-ink-950: var(--color-ink-950);
+  --color-ink-900: var(--color-ink-900);
+  --color-ink-800: var(--color-ink-800);
+  --color-ink-700: var(--color-ink-700);
+  --color-ink-600: var(--color-ink-600);
+  --color-ink-400: var(--color-ink-400);
+  --color-ink-300: var(--color-ink-300);
+  --color-ink-200: var(--color-ink-200);
+  --color-ink-100: var(--color-ink-100);
+  --color-ink-50: var(--color-ink-50);
+
+  --color-ember-700: var(--color-ember-700);
+  --color-ember-600: var(--color-ember-600);
+  --color-ember-500: var(--color-ember-500);
+  --color-ember-400: var(--color-ember-400);
+  --color-ember-100: var(--color-ember-100);
+  --color-ember-50: var(--color-ember-50);
+
+  --color-cool-600: var(--color-cool-600);
+  --color-cool-500: var(--color-cool-500);
+  --color-cool-400: var(--color-cool-400);
+  --color-cool-100: var(--color-cool-100);
+  --color-cool-50: var(--color-cool-50);
+
+  --font-sans: var(--font-display);
+  --font-mono: var(--font-mono);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body), Arial, Helvetica, sans-serif;
+}
+
+::selection {
+  background: var(--color-ember-400);
+  color: var(--color-ink-950);
+}
+
+.focus-ring {
+  outline: none;
+}
+.focus-ring:focus-visible {
+  outline: 2px solid var(--color-ember-500);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+@keyframes flow-dash {
+  to {
+    stroke-dashoffset: -24;
+  }
+}
+.animate-flow {
+  animation: flow-dash 1.2s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-flow {
+    animation: none;
+  }
+}
