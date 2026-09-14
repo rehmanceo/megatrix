@@ -6,6 +6,7 @@ import { Footer } from "@/components/layout/Footer";
 import { AnnouncementBar } from "@/components/layout/AnnouncementBar";
 import { StickyCta } from "@/components/layout/StickyCta";
 import { SetHtmlLang } from "@/components/layout/SetHtmlLang";
+import { SITE_URL } from "@/lib/site";
 
 export function generateStaticParams() {
   return LOCALES.map((locale) => ({ locale }));
@@ -19,7 +20,7 @@ export async function generateMetadata({
   const { locale } = await params;
   if (!isLocale(locale)) return {};
   const content = getContent(locale);
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://example.com";
+  const siteUrl = SITE_URL;
 
   return {
     title: content.meta.title,

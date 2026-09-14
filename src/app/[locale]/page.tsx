@@ -17,12 +17,13 @@ import { Mission } from "@/components/sections/Mission";
 import { Faq } from "@/components/sections/Faq";
 import { LeadForm } from "@/components/sections/LeadForm";
 import { FinalCta } from "@/components/sections/FinalCta";
+import { SITE_URL } from "@/lib/site";
 
 export default async function LocalePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
   const content = getContent(locale);
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://example.com";
+  const siteUrl = SITE_URL;
 
   const faqSchema = {
     "@context": "https://schema.org",
