@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { forwardLeadToGhl, isGhlConfigured } from "@/lib/ghl";
 
 interface LeadPayload {
   name?: string;
@@ -64,22 +65,37 @@ export async function POST(request: Request) {
     receivedAt: new Date().toISOString(),
   };
 
-  // Wire a real CRM/webhook destination via env var — no destination is configured
-  // yet, so leads are only logged server-side. Set LEAD_WEBHOOK_URL (e.g. a
-  // GoHighLevel inbound webhook) to forward automatically once available.
+  // Two optional, independent CRM destinations — set either or both via env vars.
+  // Neither failing should block the visitor's confirmation, so errors are only
+  // logged, never surfaced to the response.
   const webhookUrl = process.env.LEAD_WEBHOOK_URL;
-  if (webhookUrl) {
-    try {
-      await fetch(webhookUrl, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(lead),
-      });
-    } catch (error) {
-      console.error("Failed to forward lead to webhook", error);
+  const ghlConfigured = isGhlConfigured();
+
+  if (!webhookUrl && !ghlConfigured) {
+    console.info("New lead (no LEAD_WEBHOOK_URL or GHL_API_KEY/GHL_LOCATION_ID configured):", lead);
+  }
+
+  async function forwardToWebhook() {
+    if (!webhookUrl) return;
+    const response = await fetch(webhookUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(lead),
+    });
+    if (!response.ok) {
+      throw new Error(`Webhook responded ${response.status}: ${await response.text()}`);
     }
-  } else {
-    console.info("New lead (no LEAD_WEBHOOK_URL configured):", lead);
+  }
+
+  const deliveries = await Promise.allSettled([
+    forwardToWebhook(),
+    ghlConfigured ? forwardLeadToGhl(lead) : Promise.resolve(),
+  ]);
+
+  for (const result of deliveries) {
+    if (result.status === "rejected") {
+      console.error("Failed to forward lead to a CRM destination", result.reason);
+    }
   }
 
   return NextResponse.json({ ok: true });
