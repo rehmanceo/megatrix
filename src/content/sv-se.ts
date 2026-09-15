@@ -32,11 +32,11 @@ export const svSe: LandingContent = {
     subheadline:
       "Megatrix bygger och driver lead-to-job-systemet för värmepumpsinstallatörer — direkt respons, AI-assisterad kvalificering, bokade hembesök och automatisk offertuppföljning, så färre affärer försvinner mellan stolarna.",
     primaryCta: { label: "Boka kostnadsfri tillväxtanalys", sublabel: "20 minuter · kostnadsfritt · utan förpliktelser" },
-    secondaryCta: { label: "Se hur systemet fungerar" },
+    secondaryCta: { label: "Se hur det fungerar" },
     proofLine:
       "Byggt på samma typ av CRM- och automationsinfrastruktur som moderna installationsföretag använder. Varje AI-åtgärd loggas och granskas av en människa.",
     diagram: {
-      stages: ["Ny lead", "Direkt respons", "Kvalificerad", "Hembesök bokat", "Uppföljning", "Affär vunnen"],
+      stages: ["Ny lead", "Direkt respons", "Kvalificerad", "Hembesök bokat", "Affär vunnen"],
       caption: "Vad som händer automatiskt när en husägare hör av sig",
     },
   },
@@ -47,13 +47,6 @@ export const svSe: LandingContent = {
       { title: "AI med mänsklig kontroll", description: "AI skriver utkast, kvalificerar och svarar snabbt. Ert team har alltid kontroll över offert och avslut." },
       { title: "Full spårbarhet", description: "Varje lead spåras från första klick till vunnen affär, så ni vet exakt vilka kanaler som faktiskt lönar sig." },
     ],
-  },
-  segmentSwitch: {
-    label: "Den här sidan är skriven för:",
-    residential: "Villainstallatörer",
-    commercial: "Kommersiellt / flerbostadshus",
-    commercialNote:
-      "Vi arbetar även med installatörer inom kommersiella fastigheter och flerbostadshus. Mekaniken liknar varandra — men säljcykel, beslutsfattare och volymer skiljer sig åt. Berätta om er verksamhet under analysen så anpassar vi upplägget därefter.",
   },
   problem: {
     eyebrow: "Problemet",

@@ -32,11 +32,11 @@ export const enUs: LandingContent = {
     subheadline:
       "Megatrix builds and runs the lead-to-job system for residential heat pump installers — instant response, AI-assisted qualification, booked appointments, and automated estimate follow-up, so fewer leads slip through the cracks.",
     primaryCta: { label: "Get My Free Growth Assessment", sublabel: "20 minutes · no cost · no obligation" },
-    secondaryCta: { label: "See How the System Works" },
+    secondaryCta: { label: "See How It Works" },
     proofLine:
       "Built on enterprise-grade CRM and automation infrastructure. Every AI-assisted action is logged and reviewed by your team.",
     diagram: {
-      stages: ["New Lead", "Instant Response", "Qualified", "Estimate Booked", "Follow-Up", "Job Won"],
+      stages: ["New Lead", "Instant Response", "Qualified", "Estimate Booked", "Job Won"],
       caption: "What happens automatically after a homeowner reaches out",
     },
   },
@@ -58,13 +58,6 @@ export const enUs: LandingContent = {
           "Every lead is tracked from first click to closed job, so you know exactly which channels are worth paying for.",
       },
     ],
-  },
-  segmentSwitch: {
-    label: "This page is written for:",
-    residential: "Residential Installers",
-    commercial: "Commercial / Multi-Family",
-    commercialNote:
-      "We also work with commercial and multi-family heat pump contractors. The mechanics are similar — the sales cycle, stakeholders, and volumes are different. Tell us about your business on the assessment call and we'll tailor it accordingly.",
   },
   problem: {
     eyebrow: "The Problem",

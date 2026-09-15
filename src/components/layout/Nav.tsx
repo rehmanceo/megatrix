@@ -6,6 +6,7 @@ import { Menu, X } from "lucide-react";
 import type { LandingContent } from "@/content/types";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
+import { Logo } from "@/components/ui/Logo";
 import { LocaleSwitcher } from "./LocaleSwitcher";
 import { trackEvent } from "@/lib/analytics";
 
@@ -15,9 +16,8 @@ export function Nav({ content }: { content: LandingContent }) {
   return (
     <header className="sticky top-0 z-40 border-b border-ink-100/80 bg-background/90 backdrop-blur">
       <Container className="flex h-16 items-center justify-between" size="wide">
-        <Link href={`/${content.locale}`} className="focus-ring flex items-center gap-2 font-display text-lg font-bold tracking-tight text-ink-950">
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-ink-950 text-sm text-ember-400">M</span>
-          {content.siteName}
+        <Link href={`/${content.locale}`} className="focus-ring text-ink-950" aria-label={content.siteName}>
+          <Logo className="h-7 w-auto" />
         </Link>
 
         <nav className="hidden items-center gap-7 lg:flex" aria-label="Primary">

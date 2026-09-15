@@ -1,7 +1,7 @@
 import { Fragment } from "react";
-import { Phone, MessageCircleReply, BadgeCheck, CalendarCheck2, RefreshCcw, Trophy, ArrowRight, ChevronDown } from "lucide-react";
+import { Phone, MessageCircleReply, BadgeCheck, CalendarCheck2, Trophy, ArrowRight, ChevronDown } from "lucide-react";
 
-const ICONS = [Phone, MessageCircleReply, BadgeCheck, CalendarCheck2, RefreshCcw, Trophy];
+const ICONS = [Phone, MessageCircleReply, BadgeCheck, CalendarCheck2, Trophy];
 
 export function PipelineDiagram({ stages, caption }: { stages: string[]; caption: string }) {
   return (

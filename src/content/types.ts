@@ -154,12 +154,6 @@ export interface LandingContent {
     title: string;
     items: { title: string; description: string }[];
   };
-  segmentSwitch: {
-    label: string;
-    residential: string;
-    commercial: string;
-    commercialNote: string;
-  };
   problem: {
     eyebrow: string;
     title: string;

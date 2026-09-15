@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { LandingContent } from "@/content/types";
 import { MARKET_OPTIONS } from "@/content/markets";
 import { Container } from "@/components/ui/Container";
+import { Logo } from "@/components/ui/Logo";
 
 export function Footer({ content }: { content: LandingContent }) {
   return (
@@ -9,9 +10,8 @@ export function Footer({ content }: { content: LandingContent }) {
       <Container size="wide">
         <div className="grid grid-cols-2 gap-10 sm:grid-cols-4">
           <div className="col-span-2">
-            <Link href={`/${content.locale}`} className="focus-ring flex items-center gap-2 font-display text-lg font-bold text-white">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/10 text-sm text-ember-400">M</span>
-              {content.siteName}
+            <Link href={`/${content.locale}`} className="focus-ring inline-block text-white" aria-label={content.siteName}>
+              <Logo className="h-7 w-auto" />
             </Link>
             <p className="mt-3 max-w-sm text-sm leading-relaxed">{content.footer.tagline}</p>
           </div>

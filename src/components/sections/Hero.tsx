@@ -1,7 +1,6 @@
 import type { LandingContent } from "@/content/types";
 import { Container } from "@/components/ui/Container";
 import { TrackedButton } from "@/components/ui/TrackedButton";
-import { SegmentToggle } from "@/components/ui/SegmentToggle";
 import { PipelineDiagram } from "./PipelineDiagram";
 
 export function Hero({ content }: { content: LandingContent }) {
@@ -44,8 +43,6 @@ export function Hero({ content }: { content: LandingContent }) {
             {content.hero.primaryCta.sublabel ? (
               <p className="mt-3 text-sm text-ink-300">{content.hero.primaryCta.sublabel}</p>
             ) : null}
-
-            <SegmentToggle content={content.segmentSwitch} />
           </div>
 
           <div>
