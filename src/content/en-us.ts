@@ -15,7 +15,7 @@ export const enUs: LandingContent = {
       "Megatrix builds and runs the lead-to-job system for residential heat pump installers: instant response, AI-assisted qualification, automated follow-up, and full pipeline visibility. Get a free growth assessment.",
     ogAlt: "Lead-to-job pipeline diagram for heat pump installers",
   },
-  announcement: "We partner with one heat pump installer per service area.",
+  announcement: "We onboard just 2 new heat pump installers a month — by design.",
   nav: {
     links: [
       { label: "How It Works", href: "#system" },
@@ -26,7 +26,7 @@ export const enUs: LandingContent = {
     ctaLabel: "Get My Free Assessment",
   },
   hero: {
-    eyebrow: "Heat Pump Growth System",
+    eyebrow: "Heat Pump Lead Conversion System",
     headline: "Every Unanswered Lead Is A",
     highlight: "Heat Pump You Didn't Install.",
     subheadline:

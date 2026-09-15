@@ -15,7 +15,7 @@ export const svSe: LandingContent = {
       "Megatrix bygger och driver lead-to-job-systemet för värmepumpsinstallatörer: direkt respons, AI-assisterad kvalificering, automatisk uppföljning och full överblick över säljprocessen. Boka en kostnadsfri tillväxtanalys.",
     ogAlt: "Diagram över lead-to-job-processen för värmepumpsinstallatörer",
   },
-  announcement: "Vi samarbetar med en värmepumpsinstallatör per serviceområde.",
+  announcement: "Vi tar in max 2 nya värmepumpsinstallatörer per månad — medvetet.",
   nav: {
     links: [
       { label: "Så funkar det", href: "#system" },
@@ -26,7 +26,7 @@ export const svSe: LandingContent = {
     ctaLabel: "Boka kostnadsfri analys",
   },
   hero: {
-    eyebrow: "Tillväxtsystem för värmepumpsinstallatörer",
+    eyebrow: "Leadkonverteringssystem för värmepumpsinstallatörer",
     headline: "Varje obesvarad lead är en",
     highlight: "värmepump ni inte installerade.",
     subheadline:
