@@ -41,7 +41,7 @@ export function Hero({ content }: { content: LandingContent }) {
               </TrackedButton>
             </div>
             {content.hero.primaryCta.sublabel ? (
-              <p className="mt-3 text-center text-sm text-ink-300">{content.hero.primaryCta.sublabel}</p>
+              <p className="mt-3 text-center text-sm text-ink-300 sm:text-left">{content.hero.primaryCta.sublabel}</p>
             ) : null}
           </div>
 

@@ -5,6 +5,7 @@ import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
 import { AnnouncementBar } from "@/components/layout/AnnouncementBar";
 import { StickyCta } from "@/components/layout/StickyCta";
+import { BackToTopButton } from "@/components/layout/BackToTopButton";
 import { SetHtmlLang } from "@/components/layout/SetHtmlLang";
 import { SITE_URL } from "@/lib/site";
 
@@ -68,6 +69,7 @@ export default async function LocaleLayout({
       <main className="flex-1">{children}</main>
       <Footer content={content} />
       <StickyCta label={content.sticky.ctaLabel} />
+      <BackToTopButton />
     </>
   );
 }
