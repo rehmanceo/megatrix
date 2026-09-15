@@ -5,6 +5,7 @@ interface GhlLead {
   company: string;
   location: string;
   segment: string;
+  heatPumpType: string;
   volume: string;
   challenge: string;
   website: string;
@@ -13,6 +14,17 @@ interface GhlLead {
 
 const GHL_API_BASE = "https://services.leadconnectorhq.com";
 const GHL_API_VERSION = "2021-07-28";
+
+// Custom field key the client wants this stored under in GHL, taken from
+// their merge tag {{contact.what_type_of_heat_pumps_do_you_install}}.
+const HEAT_PUMP_TYPE_FIELD_KEY = "what_type_of_heat_pumps_do_you_install";
+
+const HEAT_PUMP_TYPE_LABELS: Record<string, string> = {
+  air_to_air: "Air-to-Air",
+  air_to_water: "Air-to-Water",
+  both: "Both",
+  other: "Other",
+};
 
 export function isGhlConfigured(): boolean {
   return Boolean(process.env.GHL_API_KEY && process.env.GHL_LOCATION_ID);
@@ -36,6 +48,8 @@ export async function forwardLeadToGhl(lead: GhlLead): Promise<void> {
     "Content-Type": "application/json",
   };
 
+  const heatPumpTypeLabel = HEAT_PUMP_TYPE_LABELS[lead.heatPumpType] ?? lead.heatPumpType;
+
   const tags = [
     "Growth Assessment Request",
     lead.segment === "commercial" ? "Commercial" : "Residential",
@@ -43,23 +57,47 @@ export async function forwardLeadToGhl(lead: GhlLead): Promise<void> {
     lead.volume ? `Volume: ${lead.volume}` : undefined,
   ].filter((tag): tag is string => Boolean(tag));
 
-  const upsertRes = await fetch(`${GHL_API_BASE}/contacts/upsert`, {
+  const baseContact = {
+    locationId,
+    name: lead.name,
+    email: lead.email,
+    phone: lead.phone,
+    companyName: lead.company,
+    website: lead.website || undefined,
+    source: `Heat Pump Landing Page (${lead.locale.toUpperCase()})`,
+    tags,
+  };
+
+  // GHL's public API schema documents customFields entries as requiring an
+  // internal field `id`, not the human-readable `key` the client gave us —
+  // but the key-based form is commonly accepted in practice. Try it first;
+  // if GHL rejects the payload we don't know whether it was the custom
+  // field or something else, so retry once without it rather than losing
+  // the contact sync entirely. If this keeps failing, we need the field's
+  // real ID (GHL: Settings -> Custom Fields -> open the field) rather than
+  // its key.
+  let upsertRes = await fetch(`${GHL_API_BASE}/contacts/upsert`, {
     method: "POST",
     headers,
     body: JSON.stringify({
-      locationId,
-      name: lead.name,
-      email: lead.email,
-      phone: lead.phone,
-      companyName: lead.company,
-      website: lead.website || undefined,
-      source: `Heat Pump Landing Page (${lead.locale.toUpperCase()})`,
-      tags,
+      ...baseContact,
+      customFields: [{ key: HEAT_PUMP_TYPE_FIELD_KEY, field_value: heatPumpTypeLabel }],
     }),
   });
 
   if (!upsertRes.ok) {
-    throw new Error(`GHL upsert-contact failed: ${upsertRes.status} ${await upsertRes.text()}`);
+    const firstError = await upsertRes.text();
+    console.error("GHL upsert-contact with customFields failed, retrying without it:", upsertRes.status, firstError);
+
+    upsertRes = await fetch(`${GHL_API_BASE}/contacts/upsert`, {
+      method: "POST",
+      headers,
+      body: JSON.stringify(baseContact),
+    });
+
+    if (!upsertRes.ok) {
+      throw new Error(`GHL upsert-contact failed: ${upsertRes.status} ${await upsertRes.text()}`);
+    }
   }
 
   const body = (await upsertRes.json()) as { contact?: { id?: string } };
@@ -67,6 +105,7 @@ export async function forwardLeadToGhl(lead: GhlLead): Promise<void> {
   if (!contactId) return;
 
   const noteBody = [
+    `Heat pump types installed: ${heatPumpTypeLabel}`,
     `Service area: ${lead.location || "(not provided)"}`,
     `Monthly lead volume: ${lead.volume || "(not provided)"}`,
     `Biggest challenge: ${lead.challenge || "(not provided)"}`,

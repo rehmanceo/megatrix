@@ -8,6 +8,7 @@ interface LeadPayload {
   company?: string;
   location?: string;
   segment?: string;
+  heatPumpType?: string;
   volume?: string;
   challenge?: string;
   website?: string;
@@ -42,8 +43,9 @@ export async function POST(request: Request) {
   const phone = clean(payload.phone, 40);
   const company = clean(payload.company);
   const location = clean(payload.location);
+  const heatPumpType = clean(payload.heatPumpType, 40);
 
-  if (!name || !email || !phone || !company || !location) {
+  if (!name || !email || !phone || !company || !location || !heatPumpType) {
     return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
   }
   if (!EMAIL_RE.test(email)) {
@@ -57,6 +59,7 @@ export async function POST(request: Request) {
     company,
     location,
     segment: clean(payload.segment, 20) || "residential",
+    heatPumpType,
     volume: clean(payload.volume, 40),
     challenge: clean(payload.challenge, MAX_LEN),
     website: clean(payload.website, 200),

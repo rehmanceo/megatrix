@@ -88,6 +88,8 @@ export interface FormCopy {
   segmentLabel: string;
   segmentResidential: string;
   segmentCommercial: string;
+  heatPumpTypeLabel: string;
+  heatPumpTypeOptions: string[];
   volumeLabel: string;
   volumeOptions: string[];
   challengeLabel: string;

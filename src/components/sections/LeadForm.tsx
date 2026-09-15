@@ -11,6 +11,11 @@ import { Loader2 } from "lucide-react";
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const PHONE_RE = /^[+]?[\d\s().-]{7,20}$/;
 
+// Fixed, locale-independent values paired positionally with
+// content.heatPumpTypeOptions so GHL always receives the same enum
+// regardless of which market's form was submitted.
+const HEAT_PUMP_TYPE_VALUES = ["air_to_air", "air_to_water", "both", "other"] as const;
+
 interface FormState {
   name: string;
   email: string;
@@ -18,6 +23,7 @@ interface FormState {
   company: string;
   location: string;
   segment: "residential" | "commercial";
+  heatPumpType: string;
   volume: string;
   challenge: string;
   website: string;
@@ -31,6 +37,7 @@ const INITIAL_STATE: FormState = {
   company: "",
   location: "",
   segment: "residential",
+  heatPumpType: "",
   volume: "",
   challenge: "",
   website: "",
@@ -61,6 +68,7 @@ export function LeadForm({ content, locale }: { content: LandingContent["form"];
     else if (!PHONE_RE.test(values.phone)) next.phone = content.errorPhone;
     if (!values.company.trim()) next.company = content.errorRequired;
     if (!values.location.trim()) next.location = content.errorRequired;
+    if (!values.heatPumpType) next.heatPumpType = content.errorRequired;
 
     setErrors(next);
     return Object.keys(next).length === 0;
@@ -194,6 +202,36 @@ export function LeadForm({ content, locale }: { content: LandingContent["form"];
               </label>
             ))}
           </div>
+        </fieldset>
+
+        <fieldset>
+          <legend className="mb-1.5 text-sm font-medium text-ink-700">{content.heatPumpTypeLabel}</legend>
+          <div className="flex flex-wrap gap-3">
+            {content.heatPumpTypeOptions.map((label, i) => {
+              const value = HEAT_PUMP_TYPE_VALUES[i];
+              return (
+                <label
+                  key={value}
+                  className="focus-ring flex cursor-pointer items-center gap-2 rounded-full border border-ink-200 px-4 py-2 text-sm has-[:checked]:border-ember-500 has-[:checked]:bg-ember-50 has-[:checked]:text-ember-700"
+                >
+                  <input
+                    type="radio"
+                    name="heatPumpType"
+                    value={value}
+                    checked={values.heatPumpType === value}
+                    onChange={() => update("heatPumpType", value)}
+                    className="accent-ember-500"
+                  />
+                  {label}
+                </label>
+              );
+            })}
+          </div>
+          {errors.heatPumpType ? (
+            <p role="alert" className="mt-1.5 text-xs text-ember-600">
+              {errors.heatPumpType}
+            </p>
+          ) : null}
         </fieldset>
 
         <div>

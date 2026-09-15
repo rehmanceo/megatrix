@@ -19,7 +19,7 @@ export function Section({
     <section
       id={id}
       className={clsx(
-        "py-16 sm:py-20 lg:py-28 scroll-mt-20",
+        "py-12 sm:py-16 lg:py-20 scroll-mt-20",
         tone === "dark" && "bg-ink-950 text-white",
         tone === "muted" && "bg-ink-50",
         tone === "light" && "bg-background",
