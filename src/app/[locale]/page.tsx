@@ -18,17 +18,12 @@ import { Faq } from "@/components/sections/Faq";
 import { LeadForm } from "@/components/sections/LeadForm";
 import { FinalCta } from "@/components/sections/FinalCta";
 import { SITE_URL } from "@/lib/site";
-import { getVisitorLocation, getLocationPersonalization, getServiceAreaPrefill } from "@/lib/geo";
 
 export default async function LocalePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
   const content = getContent(locale);
   const siteUrl = SITE_URL;
-
-  const visitorLocation = await getVisitorLocation();
-  const { label: locationLabel, tier: locationTier } = getLocationPersonalization(locale, visitorLocation);
-  const serviceAreaPrefill = getServiceAreaPrefill(locale, visitorLocation);
 
   const faqSchema = {
     "@context": "https://schema.org",
@@ -57,7 +52,7 @@ export default async function LocalePage({ params }: { params: Promise<{ locale:
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }} />
 
-      <Hero content={content} locationLabel={locationLabel} locationTier={locationTier} />
+      <Hero content={content} />
       <Credibility content={content.credibility} />
       <Problem content={content.problem} />
       <Calculator content={content.calculator} locale={content.locale} />
@@ -72,7 +67,7 @@ export default async function LocalePage({ params }: { params: Promise<{ locale:
       <Offer content={content.offer} ctaLabel={content.hero.primaryCta.label} />
       <Mission content={content.mission} />
       <Faq content={content.faq} />
-      <LeadForm content={content.form} locale={content.locale} locationPrefill={serviceAreaPrefill} />
+      <LeadForm content={content.form} locale={content.locale} />
       <FinalCta content={content.finalCta} />
     </>
   );

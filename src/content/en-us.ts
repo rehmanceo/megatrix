@@ -27,10 +27,10 @@ export const enUs: LandingContent = {
   },
   hero: {
     eyebrow: "Heat Pump Growth System",
-    headline: "Turn More Heat Pump Leads Into",
-    highlight: "Installed Jobs.",
+    headline: "Every Unanswered Lead Is A",
+    highlight: "Heat Pump You Didn't Install.",
     subheadline:
-      "Megatrix generates better local demand, responds to every lead instantly, books more appointments, and follows up automatically — so fewer jobs slip through the cracks before they're won.",
+      "Megatrix responds to every lead in minutes, qualifies it, and books the appointment automatically — so the job goes to you, not to whoever called back first.",
     primaryCta: { label: "Get My Free Growth Assessment", sublabel: "20 minutes · no cost · no obligation" },
     secondaryCta: { label: "See How It Works" },
     proofLine:
@@ -63,7 +63,7 @@ export const enUs: LandingContent = {
     eyebrow: "The Problem",
     title: "Your marketing is working. Your follow-up is leaking.",
     intro:
-      "Most heat pump installers don't have a lead problem. They have a response and follow-up problem — and it's costing installs every week. Every unanswered lead is a heat pump you didn't install.",
+      "Most heat pump installers don't have a lead problem. They have a response and follow-up problem — and it's costing installs every week.",
     items: [
       {
         title: "Fewer leads, higher stakes",

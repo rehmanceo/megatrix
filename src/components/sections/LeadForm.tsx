@@ -30,36 +30,29 @@ interface FormState {
   hpField: string;
 }
 
-function buildInitialState(locationPrefill: string): FormState {
-  return {
-    name: "",
-    email: "",
-    phone: "",
-    company: "",
-    location: locationPrefill,
-    segment: "residential",
-    heatPumpType: "",
-    volume: "",
-    challenge: "",
-    website: "",
-    hpField: "",
-  };
-}
+const INITIAL_STATE: FormState = {
+  name: "",
+  email: "",
+  phone: "",
+  company: "",
+  location: "",
+  segment: "residential",
+  heatPumpType: "",
+  volume: "",
+  challenge: "",
+  website: "",
+  hpField: "",
+};
 
 export function LeadForm({
   content,
   locale,
-  locationPrefill = "",
 }: {
   content: LandingContent["form"];
   locale: LandingContent["locale"];
-  /** Best-effort, editable starting value for the service-area field, from
-   * server-side geo detection. Never submitted without the visitor seeing
-   * and being able to change it — it just saves typing when it's right. */
-  locationPrefill?: string;
 }) {
   const router = useRouter();
-  const [values, setValues] = useState<FormState>(() => buildInitialState(locationPrefill));
+  const [values, setValues] = useState<FormState>(INITIAL_STATE);
   const [errors, setErrors] = useState<Partial<Record<keyof FormState, string>>>({});
   const [status, setStatus] = useState<"idle" | "submitting" | "error">("idle");
   const startedRef = useRef(false);
