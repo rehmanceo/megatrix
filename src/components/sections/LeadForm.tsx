@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import type { LandingContent } from "@/content/types";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
-import { trackEvent, getStoredAttribution } from "@/lib/analytics";
+import { trackEvent, trackContact, getStoredAttribution } from "@/lib/analytics";
 import { Loader2 } from "lucide-react";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -87,7 +87,7 @@ export function LeadForm({ content, locale }: { content: LandingContent["form"];
 
       if (!response.ok) throw new Error("Request failed");
 
-      trackEvent("form_submitted", { locale, segment: values.segment });
+      trackContact({ locale, segment: values.segment });
       router.push(`/${locale}/thank-you`);
     } catch {
       setStatus("error");

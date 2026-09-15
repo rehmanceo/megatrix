@@ -109,6 +109,11 @@ export interface ThankYouCopy {
   steps: { title: string; description: string }[];
   calendarPrompt: string;
   calendarCtaLabel: string;
+  calendarHeading: string;
+  calendarIntro: string;
+  popupTitle: string;
+  popupBody: string;
+  popupCloseLabel: string;
   backHref: string;
   backLabel: string;
 }

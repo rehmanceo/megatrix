@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import { Phone, MessageCircleReply, BadgeCheck, CalendarCheck2, RefreshCcw, Trophy, ArrowRight } from "lucide-react";
+import { Phone, MessageCircleReply, BadgeCheck, CalendarCheck2, RefreshCcw, Trophy, ArrowRight, ChevronDown } from "lucide-react";
 
 const ICONS = [Phone, MessageCircleReply, BadgeCheck, CalendarCheck2, RefreshCcw, Trophy];
 
@@ -12,7 +12,7 @@ export function PipelineDiagram({ stages, caption }: { stages: string[]; caption
           const isLast = index === stages.length - 1;
           return (
             <Fragment key={stage}>
-              <div className="flex min-h-[104px] flex-1 flex-col items-center justify-center gap-2 rounded-xl bg-white/[0.06] px-3 py-4 text-center">
+              <div className="relative flex min-h-[104px] flex-1 flex-col items-center justify-center gap-2 rounded-xl bg-white/[0.06] px-3 py-4 text-center">
                 <span
                   className={
                     isLast
@@ -23,6 +23,15 @@ export function PipelineDiagram({ stages, caption }: { stages: string[]; caption
                   <Icon size={18} aria-hidden />
                 </span>
                 <span className="text-xs font-semibold leading-tight text-white sm:text-sm">{stage}</span>
+
+                {!isLast ? (
+                  <span
+                    className="absolute -bottom-3 right-5 z-10 flex h-6 w-6 items-center justify-center rounded-full bg-ember-500 text-white ring-4 ring-ink-950 sm:hidden"
+                    aria-hidden
+                  >
+                    <ChevronDown size={13} />
+                  </span>
+                ) : null}
               </div>
               {!isLast ? (
                 <div className="hidden w-5 flex-none items-center justify-center sm:flex" aria-hidden>

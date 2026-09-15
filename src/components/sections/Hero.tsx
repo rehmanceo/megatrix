@@ -16,7 +16,7 @@ export function Hero({ content }: { content: LandingContent }) {
         aria-hidden
       />
       <Container size="wide" className="relative">
-        <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-10">
+        <div className="grid gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:items-center lg:gap-10">
           <div>
             <p className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-ember-400">
               {content.hero.eyebrow}
@@ -27,7 +27,7 @@ export function Hero({ content }: { content: LandingContent }) {
             </h1>
             <p className="mt-5 max-w-xl text-lg leading-relaxed text-ink-200">{content.hero.subheadline}</p>
 
-            <div className="mt-6 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:items-center">
+            <div className="mt-6 flex flex-col flex-wrap gap-3 sm:mt-8 sm:flex-row sm:items-center">
               <TrackedButton href="#lead-form" size="lg" payload={{ placement: "hero_primary" }}>
                 {content.hero.primaryCta.label}
               </TrackedButton>

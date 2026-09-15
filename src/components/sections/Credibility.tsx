@@ -10,7 +10,7 @@ export function Credibility({ content }: { content: LandingContent["credibility"
       </h2>
       <div className="mt-8 grid gap-6 sm:grid-cols-3">
         {content.items.map((item) => (
-          <div key={item.title} className="flex gap-3 rounded-xl bg-white p-5 shadow-sm ring-1 ring-ink-100">
+          <div key={item.title} className="flex gap-3 rounded-2xl border border-ink-100 bg-white p-6">
             <ShieldCheck className="mt-0.5 shrink-0 text-cool-600" size={20} aria-hidden />
             <div>
               <p className="font-semibold text-ink-950">{item.title}</p>

@@ -30,7 +30,7 @@ export function AiSection({ content }: { content: LandingContent["ai"] }) {
         {content.capabilities.map((item) => {
           const Icon = BADGE_ICON[item.controlled];
           return (
-            <div key={item.title} className="rounded-2xl border border-ink-100 bg-white p-5">
+            <div key={item.title} className="rounded-2xl border border-ink-100 bg-white p-6">
               <span className={clsx("inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-semibold ring-1", BADGE_STYLE[item.controlled])}>
                 <Icon size={12} aria-hidden />
                 {item.controlled === "ai" ? content.legendAi : item.controlled === "human" ? content.legendHuman : content.legendShared}

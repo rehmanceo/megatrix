@@ -57,6 +57,40 @@ export function trackEvent(event: AnalyticsEvent, payload: AnalyticsPayload = {}
   }
 }
 
+/**
+ * The two events that matter for ad platform optimization get fired as real
+ * Meta *standard* events (fbq('track', ...), not trackCustom) so Meta can use
+ * them for conversion optimization and lookalike audiences, alongside a
+ * matching snake_case event for GA4 / Google Ads (set these up as key events
+ * / conversion actions on those platforms once traffic is flowing).
+ *
+ * - trackContact: the growth-assessment form was submitted.
+ * - trackScheduleAppointment: a calendar slot was actually booked.
+ */
+export function trackContact(payload: AnalyticsPayload = {}): void {
+  trackEvent("form_submitted", payload);
+  fireStandardConversion("contact", "Contact", payload);
+}
+
+export function trackScheduleAppointment(payload: AnalyticsPayload = {}): void {
+  trackEvent("appointment_booked", payload);
+  fireStandardConversion("schedule_appointment", "Schedule", payload);
+}
+
+function fireStandardConversion(gaEventName: string, metaEventName: string, payload: AnalyticsPayload): void {
+  if (typeof window === "undefined") return;
+  const enriched: AnalyticsPayload = { ...payload, ...getStoredAttribution() };
+
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({ event: gaEventName, ...enriched });
+  window.gtag?.("event", gaEventName, enriched);
+  window.fbq?.("track", metaEventName, enriched);
+
+  if (process.env.NODE_ENV === "development") {
+    console.debug("[analytics:conversion]", gaEventName, metaEventName, enriched);
+  }
+}
+
 const ATTRIBUTION_KEY = "megatrix_attribution";
 
 export interface Attribution {
