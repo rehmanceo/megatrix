@@ -26,6 +26,18 @@ const HEAT_PUMP_TYPE_LABELS: Record<string, string> = {
   other: "Other",
 };
 
+// Custom field key for the residential/commercial question, taken from
+// {{contact.do_you_work_with_residential_or_commercial_customers}}.
+const SEGMENT_FIELD_KEY = "do_you_work_with_residential_or_commercial_customers";
+
+// Fixed English labels regardless of which locale's form was submitted, same
+// reasoning as HEAT_PUMP_TYPE_LABELS — one consistent value per field in GHL
+// rather than mixed English/Swedish text depending on submission source.
+const SEGMENT_LABELS: Record<string, string> = {
+  residential: "Residential",
+  commercial: "Commercial / Multi-Family",
+};
+
 export function isGhlConfigured(): boolean {
   return Boolean(process.env.GHL_API_KEY && process.env.GHL_LOCATION_ID);
 }
@@ -49,6 +61,7 @@ export async function forwardLeadToGhl(lead: GhlLead): Promise<void> {
   };
 
   const heatPumpTypeLabel = HEAT_PUMP_TYPE_LABELS[lead.heatPumpType] ?? lead.heatPumpType;
+  const segmentLabel = SEGMENT_LABELS[lead.segment] ?? lead.segment;
 
   const tags = [
     "Growth Assessment Request",
@@ -81,7 +94,10 @@ export async function forwardLeadToGhl(lead: GhlLead): Promise<void> {
     headers,
     body: JSON.stringify({
       ...baseContact,
-      customFields: [{ key: HEAT_PUMP_TYPE_FIELD_KEY, field_value: heatPumpTypeLabel }],
+      customFields: [
+        { key: HEAT_PUMP_TYPE_FIELD_KEY, field_value: heatPumpTypeLabel },
+        { key: SEGMENT_FIELD_KEY, field_value: segmentLabel },
+      ],
     }),
   });
 
@@ -105,6 +121,7 @@ export async function forwardLeadToGhl(lead: GhlLead): Promise<void> {
   if (!contactId) return;
 
   const noteBody = [
+    `Customer type: ${segmentLabel}`,
     `Heat pump types installed: ${heatPumpTypeLabel}`,
     `Service area: ${lead.location || "(not provided)"}`,
     `Monthly lead volume: ${lead.volume || "(not provided)"}`,
