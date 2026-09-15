@@ -1,9 +1,19 @@
 import type { LandingContent } from "@/content/types";
+import type { PersonalizationTier } from "@/lib/geo";
 import { Container } from "@/components/ui/Container";
 import { TrackedButton } from "@/components/ui/TrackedButton";
+import { LocationAnalytics } from "@/components/analytics/LocationAnalytics";
 import { PipelineDiagram } from "./PipelineDiagram";
 
-export function Hero({ content }: { content: LandingContent }) {
+export function Hero({
+  content,
+  locationLabel,
+  locationTier,
+}: {
+  content: LandingContent;
+  locationLabel: string;
+  locationTier: PersonalizationTier;
+}) {
   return (
     <section className="relative overflow-hidden bg-ink-950 pb-24 pt-14 text-white sm:pb-24 sm:pt-20 lg:pb-20">
       <div
@@ -17,9 +27,10 @@ export function Hero({ content }: { content: LandingContent }) {
       <Container size="wide" className="relative">
         <div className="grid gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:items-center lg:gap-10">
           <div>
-            <p className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-ember-400">
-              {content.hero.eyebrow}
+            <p className="mb-4 inline-flex max-w-full items-center rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-semibold uppercase leading-snug tracking-[0.14em] text-ember-400">
+              {content.hero.eyebrow} · {locationLabel}
             </p>
+            <LocationAnalytics tier={locationTier} locale={content.locale} />
             <h1 className="text-balance font-display text-4xl font-semibold leading-[1.08] tracking-tight sm:text-5xl lg:text-[3.25rem]">
               {content.hero.headline}{" "}
               <span className="text-ember-400">{content.hero.highlight}</span>

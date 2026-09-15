@@ -26,11 +26,11 @@ export const svSe: LandingContent = {
     ctaLabel: "Boka kostnadsfri analys",
   },
   hero: {
-    eyebrow: "För värmepumpsinstallatörer",
-    headline: "Varje obesvarad lead",
-    highlight: "är en värmepump ni inte installerade.",
+    eyebrow: "Tillväxtsystem för värmepumpsinstallatörer",
+    headline: "Fler värmepumpsleads",
+    highlight: "blir installerade jobb.",
     subheadline:
-      "Megatrix bygger och driver lead-to-job-systemet för värmepumpsinstallatörer — direkt respons, AI-assisterad kvalificering, bokade hembesök och automatisk offertuppföljning, så färre affärer försvinner mellan stolarna.",
+      "Megatrix skapar bättre lokal efterfrågan, svarar direkt på varje lead, bokar fler hembesök och följer upp automatiskt — så att färre affärer går förlorade innan de är vunna.",
     primaryCta: { label: "Boka kostnadsfri tillväxtanalys", sublabel: "20 minuter · kostnadsfritt · utan förpliktelser" },
     secondaryCta: { label: "Se hur det fungerar" },
     proofLine:
@@ -51,7 +51,7 @@ export const svSe: LandingContent = {
   problem: {
     eyebrow: "Problemet",
     title: "Er marknadsföring fungerar. Det är uppföljningen som läcker.",
-    intro: "De flesta värmepumpsinstallatörer har inget leadsproblem. De har ett problem med respons och uppföljning — och det kostar affärer varje vecka.",
+    intro: "De flesta värmepumpsinstallatörer har inget leadsproblem. De har ett problem med respons och uppföljning — och det kostar affärer varje vecka. Varje obesvarad lead är en värmepump ni inte installerade.",
     items: [
       {
         title: "Färre leads, högre insats",
