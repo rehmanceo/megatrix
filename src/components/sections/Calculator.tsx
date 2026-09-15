@@ -41,7 +41,7 @@ export function Calculator({ content, locale }: { content: LandingContent["calcu
     <Section id="calculator" tone="muted">
       <SectionHeading eyebrow={content.eyebrow} title={content.title} intro={content.description} />
 
-      <div className="mt-10 grid gap-8 rounded-2xl border border-ink-100 bg-white p-6 sm:p-8 lg:grid-cols-2 lg:gap-12">
+      <div className="mt-10 grid grid-cols-1 gap-8 rounded-2xl border border-ink-100 bg-white p-6 sm:p-8 lg:grid-cols-2 lg:gap-12">
         <div className="space-y-5">
           <Field
             label={content.leadsLabel}

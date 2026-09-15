@@ -65,7 +65,7 @@ export default async function LocaleLayout({
       <SetHtmlLang lang={content.htmlLang} />
       <AnnouncementBar text={content.announcement} />
       <Nav content={content} />
-      <main className="flex-1 pb-16 lg:pb-0">{children}</main>
+      <main className="flex-1">{children}</main>
       <Footer content={content} />
       <StickyCta label={content.sticky.ctaLabel} />
     </>

@@ -15,7 +15,7 @@ export const enUs: LandingContent = {
       "Megatrix builds and runs the lead-to-job system for residential heat pump installers: instant response, AI-assisted qualification, automated follow-up, and full pipeline visibility. Get a free growth assessment.",
     ogAlt: "Lead-to-job pipeline diagram for heat pump installers",
   },
-  announcement: "We onboard just 2 new heat pump installers a month — by design.",
+  announcement: "We onboard just 2 new heat pump installers a month — quality over quantity.",
   nav: {
     links: [
       { label: "How It Works", href: "#system" },
@@ -111,7 +111,7 @@ export const enUs: LandingContent = {
     lostRevenueLabel: "Estimated additional revenue / month",
     disclaimer:
       "This is a simplified illustration using the numbers you enter — not a guarantee, forecast, or industry benchmark. Your actual results depend on your market, pricing, and team.",
-    ctaText: "Want to see what this looks like with your real numbers?",
+    ctaText: "Get My Free Growth Assessment",
     currencySymbol: "$",
     currencyPosition: "prefix",
   },
@@ -252,7 +252,7 @@ export const enUs: LandingContent = {
     intro:
       "Pricing depends on your market, current setup, and channel needs — it's confirmed on your assessment call, not guessed at on a website. Here's what's included.",
     components: [
-      { name: "Foundation", summary: "The infrastructure everything else runs on.", includes: ["CRM & pipeline setup", "Call & lead tracking", "High-converting landing pages", "Website conversion audit"] },
+      { name: "Foundation", summary: "Laying the infrastructure everything else runs on.", includes: ["CRM & pipeline setup", "Call & lead tracking", "High-converting landing pages", "Website conversion audit"] },
       { name: "Lead Engine", summary: "Bringing in qualified local demand.", includes: ["Google Ads / Local Services Ads (where it fits)", "Meta Ads (where it fits)", "Lead capture forms", "Channel mix recommendation for your market"] },
       { name: "Conversion Engine", summary: "Turning inquiries into booked appointments.", includes: ["Instant lead response", "AI-assisted qualification", "Missed-call text-back", "Automated appointment booking"] },
       { name: "Sales Follow-Up", summary: "Keeping estimates and prospects alive.", includes: ["Automated estimate follow-up", "Lead nurture sequences", "Past-customer reactivation", "Review & referral requests"] },

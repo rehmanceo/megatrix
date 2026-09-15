@@ -15,7 +15,7 @@ export const svSe: LandingContent = {
       "Megatrix bygger och driver lead-to-job-systemet för värmepumpsinstallatörer: direkt respons, AI-assisterad kvalificering, automatisk uppföljning och full överblick över säljprocessen. Boka en kostnadsfri tillväxtanalys.",
     ogAlt: "Diagram över lead-to-job-processen för värmepumpsinstallatörer",
   },
-  announcement: "Vi tar in max 2 nya värmepumpsinstallatörer per månad — medvetet.",
+  announcement: "Vi tar in max 2 nya värmepumpsinstallatörer per månad — kvalitet framför kvantitet.",
   nav: {
     links: [
       { label: "Så funkar det", href: "#system" },
@@ -75,8 +75,8 @@ export const svSe: LandingContent = {
         description: "Annonsering och leadskällor lönar sig bara om varje lead får snabb och konsekvent uppföljning. Långsam hantering äter tyst upp er kundanskaffningskostnad.",
       },
       {
-        title: "Du är flaskhalsen",
-        description: "Om tillväxten är beroende av att du personligen kommer ihåg att ringa tillbaka kan verksamheten aldrig växa förbi din egen kalender.",
+        title: "Ni är flaskhalsen",
+        description: "Om tillväxten är beroende av att ni personligen kommer ihåg att ringa tillbaka kan verksamheten aldrig växa förbi er egen kalender.",
       },
     ],
   },
@@ -92,7 +92,7 @@ export const svSe: LandingContent = {
     lostOpportunitiesLabel: "Uppskattat antal extra affärer / månad",
     lostRevenueLabel: "Uppskattad extra omsättning / månad",
     disclaimer: "Det här är en förenklad illustration baserad på siffrorna ni anger — inte ett löfte, en prognos eller ett branschgenomsnitt. Verkligt utfall beror på er marknad, prissättning och team.",
-    ctaText: "Vill ni se hur det ser ut med era riktiga siffror?",
+    ctaText: "Boka kostnadsfri tillväxtanalys",
     currencySymbol: "kr",
     currencyPosition: "suffix",
   },
@@ -108,7 +108,7 @@ export const svSe: LandingContent = {
       { before: "Leads sprids i SMS, mejl och Excel", after: "Alla leads synliga i en samlad pipeline" },
       { before: "Offerter skickas och glöms bort", after: "Offerter följs upp automatiskt tills de vinns eller stängs" },
       { before: "Ingen överblick över vad som fungerar", after: "Tydlig rapportering per leadskälla, svarstid och avslutsfrekvens" },
-      { before: "Ägaren är uppföljningssystemet", after: "Systemet fungerar oavsett om du sitter vid skrivbordet eller inte" },
+      { before: "Ägaren är uppföljningssystemet", after: "Systemet fungerar oavsett om ni sitter vid skrivbordet eller inte" },
     ],
   },
   system: {
@@ -227,11 +227,11 @@ export const svSe: LandingContent = {
     title: "Ett system. Byggt och driftat åt er.",
     intro: "Priset beror på er marknad, nuvarande setup och vilka kanaler som behövs — det bekräftas under er analys, inte på en webbsida. Här är vad som ingår.",
     components: [
-      { name: "Grund", summary: "Infrastrukturen allt annat bygger på.", includes: ["CRM och pipeline-uppsättning", "Samtals- och leadsspårning", "Konverterande landningssidor", "Genomgång av er nuvarande webbplats"] },
+      { name: "Grund", summary: "Lägger grunden allt annat bygger på.", includes: ["CRM och pipeline-uppsättning", "Samtals- och leadsspårning", "Konverterande landningssidor", "Genomgång av er nuvarande webbplats"] },
       { name: "Leadsmotor", summary: "Skapar kvalificerad lokal efterfrågan.", includes: ["Google Ads / lokal sökannonsering (där det passar)", "Meta-annonsering (där det passar)", "Formulär för leadsinsamling", "Rekommenderad kanalmix för er marknad"] },
       { name: "Konverteringsmotor", summary: "Omvandlar förfrågningar till bokade hembesök.", includes: ["Direkt respons på leads", "AI-assisterad kvalificering", "SMS vid missat samtal", "Automatisk bokning av hembesök"] },
       { name: "Säljuppföljning", summary: "Håller offerter och prospekt vid liv.", includes: ["Automatisk offertuppföljning", "Nurture-sekvenser", "Återaktivering av tidigare kunder", "Förfrågan om recensioner och rekommendationer"] },
-      { name: "Rapportering & optimering", summary: "Att veta vad som faktiskt fungerar.", includes: ["Månadsrapportering", "Attribution per leadskälla", "Löpande testning och förbättring"] },
+      { name: "Rapportering & optimering", summary: "Visar vad som faktiskt fungerar.", includes: ["Månadsrapportering", "Attribution per leadskälla", "Löpande testning och förbättring"] },
     ],
     pricingNote: "Ingen publicerad prislista — det här är ett byggt system, inte ett standardpaket. Ni får en konkret siffra efter analysen, baserat på er marknad och omfattning.",
   },

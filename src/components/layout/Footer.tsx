@@ -6,7 +6,7 @@ import { Logo } from "@/components/ui/Logo";
 
 export function Footer({ content }: { content: LandingContent }) {
   return (
-    <footer className="border-t border-white/10 bg-ink-950 pt-14 pb-8 text-ink-300">
+    <footer className="border-t border-white/10 bg-ink-950 pt-14 pb-24 text-ink-300 lg:pb-8">
       <Container size="wide">
         <div className="grid grid-cols-2 gap-10 sm:grid-cols-4">
           <div className="col-span-2">
