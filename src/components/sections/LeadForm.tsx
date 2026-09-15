@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import type { LandingContent } from "@/content/types";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
-import { trackEvent, trackContact, getStoredAttribution } from "@/lib/analytics";
+import { trackEvent, trackContact, getStoredAttribution, generateEventId } from "@/lib/analytics";
 import { Loader2 } from "lucide-react";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -88,6 +88,11 @@ export function LeadForm({
     }
 
     setStatus("submitting");
+    // Generated up front and sent to the server alongside the form, so the
+    // browser Pixel fire below and the server-side Meta Conversions API call
+    // in /api/lead carry the same event_id — Meta dedupes them into one
+    // conversion instead of double-counting.
+    const eventId = generateEventId();
     try {
       const response = await fetch("/api/lead", {
         method: "POST",
@@ -96,12 +101,13 @@ export function LeadForm({
           ...values,
           locale,
           attribution: getStoredAttribution(),
+          eventId,
         }),
       });
 
       if (!response.ok) throw new Error("Request failed");
 
-      trackContact({ locale, segment: values.segment });
+      trackContact({ locale, segment: values.segment }, eventId);
       router.push(`/${locale}/thank-you`);
     } catch {
       setStatus("error");

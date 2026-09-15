@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { forwardLeadToGhl, isGhlConfigured } from "@/lib/ghl";
+import { sendMetaCapiEvent, isMetaCapiConfigured, extractClientIp, extractFbCookies } from "@/lib/metaCapi";
 
 interface LeadPayload {
   name?: string;
@@ -15,6 +16,7 @@ interface LeadPayload {
   hpField?: string;
   locale?: string;
   attribution?: Record<string, string | undefined>;
+  eventId?: string;
 }
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -90,9 +92,29 @@ export async function POST(request: Request) {
     }
   }
 
+  async function forwardToMetaCapi() {
+    const eventId = clean(payload.eventId, 100);
+    if (!isMetaCapiConfigured() || !eventId) return;
+    const { fbp, fbc } = extractFbCookies(request.headers.get("cookie"));
+    await sendMetaCapiEvent({
+      eventName: "Contact",
+      eventId,
+      eventSourceUrl: request.headers.get("referer") ?? undefined,
+      userData: {
+        email,
+        phone,
+        clientIp: extractClientIp(request.headers.get("x-forwarded-for")),
+        userAgent: request.headers.get("user-agent") ?? undefined,
+        fbp,
+        fbc,
+      },
+    });
+  }
+
   const deliveries = await Promise.allSettled([
     forwardToWebhook(),
     ghlConfigured ? forwardLeadToGhl(lead) : Promise.resolve(),
+    forwardToMetaCapi(),
   ]);
 
   for (const result of deliveries) {

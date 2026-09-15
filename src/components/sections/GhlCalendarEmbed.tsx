@@ -56,7 +56,17 @@ export function GhlCalendarEmbed({
 
       if (!isResizePing && BOOKING_SIGNAL.test(signature)) {
         setBooked(true);
-        trackScheduleAppointment();
+        const eventId = trackScheduleAppointment();
+        // Best-effort server-side copy for Meta Conversions API — the GHL
+        // booking iframe never exposes the booker's name/email/phone to this
+        // page (cross-origin, no stable postMessage contract), so this fires
+        // with only IP/user-agent/Meta's own browser cookies, not full PII.
+        // Fire-and-forget: never block the confirmation UI on this.
+        fetch("/api/booking-confirmed", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ eventId }),
+        }).catch(() => {});
       }
     }
 
