@@ -97,17 +97,3 @@ body {
   outline-offset: 3px;
   border-radius: 4px;
 }
-
-@keyframes flow-dash {
-  to {
-    stroke-dashoffset: -24;
-  }
-}
-.animate-flow {
-  animation: flow-dash 1.2s linear infinite;
-}
-@media (prefers-reduced-motion: reduce) {
-  .animate-flow {
-    animation: none;
-  }
-}
